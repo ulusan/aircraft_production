@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-
+from django.db import connection
+from django.db.backends.signals import connection_created
+from django.dispatch import receiver
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 CORS_ALLOW_ALL_ORIGINS = True
@@ -113,8 +115,8 @@ DATABASES = {
         'NAME': 'uav_db',
         'USER': 'ulusan',
         'PASSWORD': 'ulusan',
-        'HOST': 'localhost',
-        'PORT': '5433',
+        'HOST': 'localhost', #  'localhost', localde çalışılacağı zaman
+        'PORT': '5433', # 5433, localde çalışılacağı zaman
     }
 }
 
@@ -159,3 +161,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+@receiver(connection_created)
+def load_initial_data(sender, connection, **kwargs):
+    sql_path = os.path.join(BASE_DIR, 'initial_data.sql')
+    if os.path.exists(sql_path):
+        with open(sql_path, 'r') as f:
+            with connection.cursor() as cursor:
+                cursor.execute(f.read())
