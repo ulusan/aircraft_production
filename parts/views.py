@@ -12,16 +12,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import RegisterSerializer
 from .serializers import AircraftAssemblySerializer
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.decorators import action
 
-from rest_framework.viewsets import ModelViewSet
-from .models import Part
-from .serializers import PartSerializer
 from rest_framework.permissions import AllowAny 
-
+from .models import User
 
 class PartViewSet(ModelViewSet):
     queryset = Part.objects.all()
@@ -78,31 +73,34 @@ class TeamViewSet(viewsets.ModelViewSet):
     serializer_class = TeamSerializer
 
     @action(detail=True, methods=['post'])
-    def add_user(self, request, pk=None):
-        team = self.get_object()
+    def add_user(self, request, *args, **kwargs):
+        team = self.get_object() 
         email = request.data.get("email")
+        if not email:
+            return Response({"error": "Email is required."}, status=status.HTTP_400_BAD_REQUEST)
         user = User.objects.filter(email=email).first()
-        
         if not user:
-            return Response({"detail": "User not found"}, status=404)
+            return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
         
-        if user in team.users.all():
-            return Response({"detail": "User is already in this team."}, status=400)
+        if team.users.filter(id=user.id).exists():
+            return Response({"error": "User is already in this team."}, status=status.HTTP_400_BAD_REQUEST)
         
         team.users.add(user)
-        return Response({"detail": f"User {user.email} added to {team.name}"}, status=200)
+        return Response({"message": "User added to team successfully."}, status=status.HTTP_200_OK)
 
     @action(detail=True, methods=['delete'])
     def remove_user(self, request, pk=None):
         team = self.get_object()
-        user_id = request.data.get("user_id") 
+        user_id = request.data.get("user_id")
+        if not user_id:
+            return Response({"error": "User ID is required."}, status=status.HTTP_400_BAD_REQUEST)
         user = User.objects.filter(id=user_id).first()
-
         if not user:
-            return Response({"detail": "User not found"}, status=404)
-
+            return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
+        if not team.users.filter(id=user.id).exists():
+            return Response({"error": "User is not in this team."}, status=status.HTTP_400_BAD_REQUEST)
         team.users.remove(user)
-        return Response({"detail": f"User {user.email} removed from {team.name}"}, status=200)
+        return Response({"message": "User removed from team successfully."}, status=status.HTTP_200_OK)
 
 class AircraftViewSet(ModelViewSet):
     queryset = Aircraft.objects.all()

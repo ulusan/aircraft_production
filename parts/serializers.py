@@ -4,6 +4,7 @@ from .models import Team
 from .models import Aircraft
 from .models import User
 from django.contrib.auth import get_user_model
+from rest_framework.exceptions import PermissionDenied
 
 User = get_user_model()
 
@@ -22,7 +23,7 @@ class PartSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("You must belong to a team to create or edit a part.")
 
         if team not in user.teams.all():
-            raise serializers.ValidationError("You can only create parts for your own team.")
+            raise PermissionDenied("You can only create parts for your own team.")
 
         if part_name not in team.allowed_parts():
             raise serializers.ValidationError(f"The {team.name} cannot produce this part.")
