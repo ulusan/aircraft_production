@@ -255,4 +255,17 @@ pgAdmin is a web-based administration tool for PostgreSQL. Follow these steps to
 ### Swagger
 Swagger provides interactive API documentation. Access it at:
    - [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
+![WhatsApp Image 2024-12-20 at 21 59 48](https://github.com/user-attachments/assets/ba042922-f7f5-494f-bc80-2ec6f7698571)
+![WhatsApp Image 2024-12-20 at 21 59 41](https://github.com/user-attachments/assets/93d3a35c-251d-40fe-839b-672537927a6b)
+![WhatsApp Image 2024-12-20 at 21 59 28](https://github.com/user-attachments/assets/19c5a344-0b10-4c87-abb5-d15b3148505e)
+![WhatsApp Image 2024-12-20 at 21 59 18](https://github.com/user-attachments/assets/6b89a840-51ae-49d5-a9c1-b6ee5a479fd3)
+![WhatsApp Image 2024-12-20 at 21 58 51](https://github.com/user-attachments/assets/2a3dd720-5747-4e84-9f72-5a3856f3dcb7)
+![WhatsApp Image 2024-12-20 at 21 58 38](https://github.com/user-attachments/assets/24912b74-027a-4626-a41f-21f2bf7dec85)
+![WhatsApp Image 2024-12-20 at 21 58 14](https://github.com/user-attachments/assets/37b2b1a6-1a8d-46eb-965f-bd1c3377f6ad)
+![WhatsApp Image 2024-12-20 at 17 44 52](https://github.com/user-attachments/assets/5a3ee541-7f93-41cb-a979-4203c44928d8)
+![WhatsApp Image 2024-12-20 at 17 44 47](https://github.com/user-attachments/assets/051387ea-e507-4bad-8bd9-c808771ecff2)
+![WhatsApp Image 2024-12-20 at 17 44 41](https://github.com/user-attachments/assets/1af2b643-f045-4d86-b27f-7fff546ba3c5)
+![WhatsApp Image 2024-12-20 at 17 44 35](https://github.com/user-attachments/assets/d43393dd-814f-4b06-932e-993172c09a81)
+![WhatsApp Image 2024-12-20 at 17 44 29](https://github.com/user-attachments/assets/a16021df-4a66-40cc-8b36-52e1d35c549f)
+![WhatsApp Image 2024-12-20 at 17 44 16](https://github.com/user-attachments/assets/f70565c9-0e02-49b8-aeea-935756ac7289)
 
