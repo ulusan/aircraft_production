@@ -162,10 +162,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-@receiver(connection_created)
-def load_initial_data(sender, connection, **kwargs):
-    sql_path = os.path.join(BASE_DIR, 'initial_data.sql')
-    if os.path.exists(sql_path):
-        with open(sql_path, 'r') as f:
-            with connection.cursor() as cursor:
-                cursor.execute(f.read())
+# @receiver(connection_created)
+# def load_initial_data(sender, connection, **kwargs):
+#     sql_path = os.path.join(BASE_DIR, 'initial_data.sql')
+#     if os.path.exists(sql_path):
+#         with open(sql_path, 'r') as f:
+#             with connection.cursor() as cursor:
+#                 cursor.execute(f.read())
